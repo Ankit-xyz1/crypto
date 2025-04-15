@@ -1,17 +1,18 @@
 
 import './App.css'
-
+import Landing from './components/Landing'
+import Navbar from './components/Navbar'
+import useWalletStore from '../lib/Zustandstore'
+import WalletPage from './components/WalletPage'
 function App() {
-
+  const {walletCreated} = useWalletStore()
   return (
     <>
-      <div className="main h-screen w-full flex flex-col  text-white bg-zinc-950 p-2 overflow-auto">
-        <div className="create h-[20vh] bg-blue-600 w-full flex mt-10 ">
-          <div className='flex justify-center  flex-col p-5 items-start w-[50%] bg-red-500'>
-            <h1 className='text-3xl md:text-xl'>ANKY WALLET</h1>
-            <h2>Create SOL Wallet at instants</h2>
-          </div>
-          <div className="CreateButton"></div>
+      <div className="main h-screen w-full flex  items-center justify-center text-white bg-zinc-950 overflow-auto ">
+        <div className='w-full md:w-[70%]  min-h-screen overflow-auto px-5'>
+          <Navbar/>
+          {walletCreated?<><WalletPage/></>:<><Landing/></>}
+          
         </div>
       </div>
     </>
