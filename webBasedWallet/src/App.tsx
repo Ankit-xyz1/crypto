@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <div className="main h-screen w-full flex  items-center justify-center text-white bg-zinc-950 overflow-auto ">
-        <div className='w-full md:w-[70%]  min-h-screen overflow-auto px-5'>
+        <div className='w-full md:w-[50%]  min-h-screen overflow-auto px-5'>
           <Navbar/>
           {walletCreated?<><WalletPage/></>:<><Landing/></>}
           

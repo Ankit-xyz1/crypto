@@ -1,8 +1,12 @@
-import React from 'react'
-
+import useWalletStore from "../../lib/Zustandstore"
+import MainWalletPage from "./walletPageComponents/MainWalletPage"
+import WalletLand from "./walletPageComponents/WalletLand"
 const WalletPage = () => {
+  const { walletCount,Mneomonics } = useWalletStore()
   return (
-    <div>WalletPage</div>
+    <>
+    {Mneomonics?<MainWalletPage/>:<WalletLand />}
+    </>
   )
 }
 
