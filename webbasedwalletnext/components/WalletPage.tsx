@@ -83,7 +83,7 @@ const WalletPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}>
                 {Mneomonics.split(" ").map((item, index) => (
-                  <div key={index} className="blocks p-2 w-[70px] md:w-[200px] h-[5vh] bg-zinc-800 flex items-center justify-center rounded hover:bg-zinc-700 transition-all ease-in-out duration-500 cursor-pointer">{item}</div>
+                  <div key={index} className="blocks p-2 w-[70px] md:w-[200px] h-[5vh] bg-zinc-800 flex items-center justify-center rounded hover:bg-zinc-700 transition-all ease-in-out duration-300 cursor-pointer">{item}</div>
                 ))}
                 <div className="w-full px-2 mt-3"><button className="flex gap-2 items-center cursor-pointer text-zinc-400" onClick={copyMnemonics}>click here to copy <Copy size={15} /></button></div>
               </motion.div>

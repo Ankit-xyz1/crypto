@@ -15,7 +15,7 @@ const WalletLand = () => {
         PublicKey: string | null,
     }
     //global states
-    const { walletCount, setMneomonics, setKeyPairs, KeyPairs } = useWalletStore()
+    const { walletCount, setMneomonics, setKeyPairs, KeyPairs,toggleWallet } = useWalletStore()
     //local states
     const [textAreaValue, settextAreaValue] = useState<string>()
 
@@ -69,6 +69,10 @@ const WalletLand = () => {
             setKeyPairs([...KeyPairs, keyPair])
         }
     }
+
+    const Goback = ()=>{
+        toggleWallet()
+    }
     return (
         <motion.div className="w-full h-[40vh] flex flex-col gap-4 items-start justify-center relative"
             initial={{ opacity: 0, y: -20 }}
@@ -86,7 +90,7 @@ const WalletLand = () => {
                         onClick={CreateWallet}>{textAreaValue ? "Recover wallet" : "Genrate Wallet"}</Button>
                 </div>
             </div>
-            <button className="exit w-fit h-fit absolute bottom-[-50px] left-[8px] z-10 bg-zinc-800 rounded p-1 flex items-center justify-center hover:bg-zinc-700 transition-all ease-in-out duration-500 cursor-pointer">
+            <button onClick={Goback} className="exit w-fit h-fit absolute bottom-[-50px] left-[8px] z-10 bg-zinc-800 rounded p-1 flex items-center justify-center hover:bg-zinc-700 transition-all ease-in-out duration-500 cursor-pointer">
                 <ChevronLeft className="" />
             </button>
         </motion.div>

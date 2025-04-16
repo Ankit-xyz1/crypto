@@ -1,0 +1,22 @@
+{
+    "name": "Solana wallet",
+    "short_name": "sone wallet",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#111111",
+    "description": "A cool wallet web app!",
+    "icons": [
+      {
+        "src": "/icons/xxx192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/xxx.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
