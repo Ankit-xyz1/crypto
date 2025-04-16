@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+live on https://crypto-two-roan.vercel.app/
 
-## Getting Started
+# 🪙 Solana Wallet Creator
 
-First, run the development server:
+A lightweight crypto wallet app that enables users to generate and manage wallets on the **Solana blockchain**. Ideal for dApps, projects, or developers who need quick and secure wallet creation on Solana.
+
+## 🚀 Features
+
+- 🔐 Create new Solana wallets (Keypair generation)
+- 📁 Export and save wallet details (public/private key)
+- 🧾 Display wallet address and balance
+- 🪙 Ready for integration with Solana dApps
+- 🛡️ Follows best practices for key management
+
+## 🛠️ Tech Stack
+
+- **Solana Web3.js** – Blockchain interaction
+- **TypeScript / JavaScript** – App logic
+- **React / Next.js** *(optional)* – Frontend (if applicable)
+- **TailwindCSS** *(optional)* – Styling
+
+## 📦 Installation
 
 ```bash
+git clone https://github.com/Ankit-xyz1/crypto.git
+cd webbasedwalletnext
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚙️ How It Works
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Click **"Create Wallet"** button.
+2. App generates a new Solana `Keypair`.
+3. The **public key** (wallet address) is shown to the user.
+4. The **secret key** is saved locally (or downloaded as a file).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📸 Screenshots
 
-## Learn More
+*(Add screenshots here of wallet creation interface and key details view)*
 
-To learn more about Next.js, take a look at the following resources:
+## 🔐 Security Note
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **NEVER expose private keys** in production environments.
+- Use secure storage methods such as `localStorage` encryption, hardware wallets, or secure vaults.
+- This project is for educational and testing purposes. Use with caution in production.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🧱 Folder Structure
 
-## Deploy on Vercel
+```
+/src
+  /components     # UI Components
+  /utils          # Solana wallet utilities
+  /pages          # Routes (if using Next.js)
+  /hooks          # Custom hooks (optional)
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🧪 Development
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To create a new wallet programmatically:
+
+```ts
+import { Keypair } from '@solana/web3.js';
+
+const wallet = Keypair.generate();
+console.log("Public Key:", wallet.publicKey.toBase58());
+console.log("Secret Key:", wallet.secretKey);
+```
+
+## 🛣 Roadmap
+
+- [ ] Import wallets using secret key or mnemonic
+- [ ] Connect to Phantom / Solflare
+- [ ] Token transfers (SOL + SPL)
+- [ ] Mobile-friendly UI
+- [ ] Encrypted backup options
+
+## 🙌 Contribution
+
+Contributions are welcome! Please open an issue first to discuss your idea.
+
+```bash
+git checkout -b feature/my-feature
+git commit -m "Add my feature"
+git push origin feature/my-feature
+```
+
+## 📄 License
+
+This project is open source under the [MIT License](LICENSE).
+
+---
+
+Let me know if you used any specific libraries (like `@solana/wallet-adapter` or a framework like Electron), and I’ll tailor it further.
