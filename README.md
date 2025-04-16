@@ -22,7 +22,7 @@ A lightweight crypto wallet app that enables users to generate and manage wallet
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/yourusername/solana-wallet-creator.git
+git clone [https://github.com/yourusername/solana-wallet-creator](https://github.com/Ankit-xyz1/crypto).git
 cd solana-wallet-creator
 npm install
 npm run dev
