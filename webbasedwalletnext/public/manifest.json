@@ -1,6 +1,6 @@
 {
-    "name": "Solana wallet",
-    "short_name": "sone wallet",
+    "name": "ANBIT wallet",
+    "short_name": "Solana wallet",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#000000",
