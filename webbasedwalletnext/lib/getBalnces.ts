@@ -10,7 +10,7 @@ export const getSoBalance = async (
 ): Promise<number | null> => {
   if (!publicKey) return null;
   console.log("pybkey", publicKey);
-  const apiUrl = process.env.NEXT_PUBLIC_SolAlmechyApi;
+  const apiUrl = "https://solana-mainnet.g.alchemy.com/v2/gZ2pJjhfXkycfQsUGo8aW-oOgVuxFYqg";
   console.log("api url", apiUrl);
   const body = {
     jsonrpc: "2.0",
