@@ -11,8 +11,8 @@ import useWalletStore from "@/lib/zustandStore";
 
 interface Props {
     index: number;
-    publicKey: string | null;
-    privateKey: string | null;
+    publicKey: string;
+    privateKey: string;
 }
 
 
@@ -127,14 +127,14 @@ const WalletCard = ({ index, publicKey, privateKey }: Props) => {
                 </div>
             </div>
             {sending && <>
-                <motion.div className="sending absolute h-[92%] w-[94%] md:w-[97.5%] rounded-xl bg-zinc-800 p-4 flex items-center justify-center"
+                <motion.div className="sending absolute h-[93%] w-[94%] md:w-[98%]  rounded-lg bg-zinc-800 p-4 flex items-center justify-center"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }} >
                     <div className="w-full h-full">
 
                         <div className="x absolute top-0 right-0 p-2"><button className="cursor-pointer" onClick={() => setsending(false)}><X /></button></div>
-                        <SendingCard privateKey={privateKey} solAvailabe={balance} />
+                        <SendingCard privateKey={privateKey} solAvailabe={balance} publickey={publicKey} />
                     </div>
                 </motion.div>
             </>}

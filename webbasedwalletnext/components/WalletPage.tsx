@@ -19,7 +19,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { Copy, Plus, Trash } from "lucide-react";
+import { Copy, Plus, RefreshCw, Trash } from "lucide-react";
 import { toast, Toaster } from "sonner";
 import { Button } from "./ui/button";
 import WalletCard from "./walletPageComponents/WalletCard";
@@ -32,6 +32,7 @@ const WalletPage = () => {
     PublicKey: string | null,
   }
   const { walletCount, Mneomonics, setMneomonics, KeyPairs, setKeyPairs, toggleWallet } = useWalletStore()
+
   useEffect(() => {
     const mnemoics = localStorage.getItem("Mnemonics");
     if (mnemoics) {
@@ -115,6 +116,8 @@ const WalletPage = () => {
               </AlertDialogContent>
             </AlertDialog>
             <Button onClick={AddAnotherWallet} className="cursor-pointer hover:bg-zinc-700 transition-all ease-in duration-200"><Plus />add wallet</Button>
+            <Button className="cursor-pointer hover:bg-zinc-700 transition-all ease-in duration-200"><RefreshCw />
+            </Button>
           </div>
         </motion.div>
         {KeyPairs && <>
@@ -124,8 +127,8 @@ const WalletPage = () => {
               <WalletCard
                 key={index}
                 index={index}
-                publicKey={item.PublicKey}
-                privateKey={item.privateKey}
+                publicKey={item.PublicKey || "X"}
+                privateKey={item.privateKey || "X"}
               />
             ))}
           </div>
