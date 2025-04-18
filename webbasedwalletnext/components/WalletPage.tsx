@@ -31,8 +31,8 @@ const WalletPage = () => {
     privateKey: string | null,
     PublicKey: string | null,
   }
-  const { walletCount, Mneomonics, setMneomonics, KeyPairs, setKeyPairs, toggleWallet } = useWalletStore()
-
+  const { walletCount, Mneomonics, setMneomonics, KeyPairs, setKeyPairs, toggleWallet,setdevnet,devnet } = useWalletStore()
+  
   useEffect(() => {
     const mnemoics = localStorage.getItem("Mnemonics");
     if (mnemoics) {
@@ -47,6 +47,8 @@ const WalletPage = () => {
     }
   }, [])
 
+
+  const [refreshing, setrefreshing] = useState(false)
 
   const copyMnemonics = () => {
     if (Mneomonics) {
@@ -70,6 +72,23 @@ const WalletPage = () => {
       return toast.error("cannot create wallet")
     }
     toast.error("no mnemonics")
+  }
+
+  const refreshBalnces=()=>{
+    setrefreshing(true)
+    if(devnet){
+      setdevnet(false)
+      setTimeout(() => {
+        setdevnet(true)
+        setrefreshing(false)
+      }, 300);
+    }else{
+      setdevnet(true)
+      setTimeout(() => {
+        setdevnet(false)
+        setrefreshing(false)
+      }, 300);
+    }
   }
   return (
     <>
@@ -116,7 +135,7 @@ const WalletPage = () => {
               </AlertDialogContent>
             </AlertDialog>
             <Button onClick={AddAnotherWallet} className="cursor-pointer hover:bg-zinc-700 transition-all ease-in duration-200"><Plus />add wallet</Button>
-            <Button className="cursor-pointer hover:bg-zinc-700 transition-all ease-in duration-200"><RefreshCw />
+            <Button onClick={refreshBalnces} className="cursor-pointer hover:bg-zinc-700 transition-all ease-in duration-200"><RefreshCw className={`${refreshing? "animate-spin" :""}`} />
             </Button>
           </div>
         </motion.div>
