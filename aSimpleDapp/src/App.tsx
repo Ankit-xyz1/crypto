@@ -1,32 +1,22 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import  {  useMemo } from 'react';
 import { ConnectionProvider, useWallet, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import {
   WalletModalProvider,
-  WalletDisconnectButton,
   WalletMultiButton
 } from '@solana/wallet-adapter-react-ui';
-import { clusterApiUrl, Connection, PublicKey } from '@solana/web3.js';
+import { clusterApiUrl } from '@solana/web3.js';
 import '@solana/wallet-adapter-react-ui/styles.css'
 
 import './App.css'
-import Navbar from './components/navbar';
 import { ToastContainer } from 'react-toastify';
 import { Rest } from './components/Rest';
 
 function App() {
-  const { publicKey, connected } = useWallet()
+  const { publicKey } = useWallet()
   const network = WalletAdapterNetwork.Devnet;
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
-  const [publicky1, setpublicky1] = useState<string>()
 
-  useEffect(() => {
-    if(publicKey?.toBase58){
-      const data = publicKey.toBase58()
-      console.log("data",data)
-      setpublicky1(data)
-    }
-  }, [connected])
   
   return (
     <ConnectionProvider endpoint={endpoint} >
