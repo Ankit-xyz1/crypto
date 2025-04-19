@@ -47,7 +47,7 @@ export const Rest = () => {
             <div className='w-full p-2 flex flex-col h-full gap-2'>
                 <div className='heading h-[30%] flex flex-col gap-0.5 items-center justify-center'>
                     <h1 className='text-3xl md:text-7xl jet text-zinc-200'>Sol Faucet</h1>
-                    <h2 className='text-lg md:text-3xl jet '>claim sol faucet on devnet instantly</h2>
+                    <h2 className='text-sm md:text-3xl jet '>claim sol faucet on devnet instantly</h2>
                 </div>
                 <div className=' inputs h-[30%] items-center flex flex-col gap-1'>
                     <div className='flex p-2 items-start flex-col gap-2'>
