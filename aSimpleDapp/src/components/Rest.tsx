@@ -33,7 +33,7 @@ export const Rest = () => {
                 toast.success("faucet requested")
                 return setloader(false)
             } else {
-                toast.error("both feild are required")
+                toast.error("both field are required")
                 return setloader(false)
             }
         } catch (error) {
