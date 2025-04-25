@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   createInitializeMint2Instruction,
-  createMint,
   getMinimumBalanceForRentExemptMint,
   MINT_SIZE,
   TOKEN_PROGRAM_ID,
@@ -13,19 +12,18 @@ import { PublicKey } from "@solana/web3.js";
 import { SystemProgram } from "@solana/web3.js";
 import { Transaction } from "@solana/web3.js";
 import { Keypair } from "@solana/web3.js";
-import { sendAndConfirmTransaction } from "@solana/web3.js";
+import { useEffect } from "react";
 
 function App() {
+  const wallet = useWallet();
   const { connection } = useConnection();
   const [name, setname] = useState("");
   const [ticker, setticker] = useState("");
   const [image, setimage] = useState("");
   const [supply, setsupply] = useState("");
+  const [pk, setpk] = useState('xx')
 
   const handleName = (e) => {
-    console.log(connected);
-    console.log(publicKey);
-    console.log(connection);
     setname(e.target.value);
   };
   const handleTicker = (e) => {
@@ -37,16 +35,21 @@ function App() {
   const handleSupply = (e) => {
     setsupply(e.target.value);
   };
-
   const { connected, publicKey } = useWallet();
+  useEffect(() => {
+    if(connected){
+      setpk(publicKey.toString())
+    } 
+  }, [])
+  
+
   const createToken = async () => {
-    const payer = new PublicKey(publicKey);
     const keypair = Keypair.generate();
     const lamports = await getMinimumBalanceForRentExemptMint(connection);
     const programId = TOKEN_PROGRAM_ID;
     const transaction = new Transaction().add(
       SystemProgram.createAccount({
-        fromPubkey: payer,
+        fromPubkey: wallet.publicKey,
         newAccountPubkey: keypair.publicKey,
         space: MINT_SIZE,
         lamports,
@@ -55,19 +58,25 @@ function App() {
       createInitializeMint2Instruction(
         keypair.publicKey,
         9,
-        payer,
-        payer,
+        wallet.publicKey,
+        wallet.publicKey,
         programId
       )
     );
-    await sendAndConfirmTransaction(connection, transaction, [payer, keypair]);
+    const recentBlockHash = await connection.getLatestBlockhash()
+    transaction.recentBlockhash = recentBlockHash.blockhash
+    transaction.feePayer = wallet.publicKey
+    transaction.partialSign(keypair)
+    const res = await wallet.sendTransaction(transaction , connection)
+    console.log(res)
+    //await sendAndConfirmTransaction(connection, transaction, [payer, keypair]);
   };
 
   return (
     <div className="bg-[#3D365C] w-full h-screen flex justify-center">
       <div className="w-full md:w-[50%] flex h-full items-center justify-center gap-2 flex-col">
         <WalletMultiButton>
-          {connected ? "disconnect" : "connect"}
+          {connected ? <>{pk.slice(0,5)+"....."}</> : "connect"}
         </WalletMultiButton>
         <h1 className="text-2xl text-white">Create your own token</h1>
         <input
